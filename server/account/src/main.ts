@@ -6,11 +6,11 @@ import { join } from 'path';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
+import { WinstonModule } from 'nest-winston';
 import { initWinston } from 'sdk/dist/logger';
 import { AppEnv, ProtoPath, RPCServiceName, RPCUrl } from 'sdk';
 
 import { AppModule } from './startup/app.module';
-import { WinstonModule } from 'nest-winston';
 
 class Application {
   // get the number of available CPU cores
