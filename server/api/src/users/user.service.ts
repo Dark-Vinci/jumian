@@ -1,21 +1,7 @@
 import crypto from 'crypto';
 
 import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
-
-class ProxyLogger {
-  constructor(
-    private readonly logger: any,
-    private readonly loggerMetadata: any,
-  ) {}
-
-  public log(message: string, options: any = {}): void {
-    this.logger.log(message, { ...this.loggerMetadata, ...options });
-  }
-
-  public error(message: string, options: any = {}): void {
-    this.logger.error(message, { ...this.loggerMetadata, ...options });
-  }
-}
+import { ProxyLogger } from 'sdk/dist/logger';
 
 @Injectable()
 export class UserService extends ProxyLogger implements OnModuleInit {

@@ -18,19 +18,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const common_1 = require("@nestjs/common");
-class ProxyLogger {
-    constructor(logger, loggerMetadata) {
-        this.logger = logger;
-        this.loggerMetadata = loggerMetadata;
-    }
-    log(message, options = {}) {
-        this.logger.log(message, Object.assign(Object.assign({}, this.loggerMetadata), options));
-    }
-    error(message, options = {}) {
-        this.logger.error(message, Object.assign(Object.assign({}, this.loggerMetadata), options));
-    }
-}
-let UserService = class UserService extends ProxyLogger {
+const logger_1 = require("sdk/dist/logger");
+let UserService = class UserService extends logger_1.ProxyLogger {
     constructor(logger) {
         super(logger, {
             packageName: 'UserService',

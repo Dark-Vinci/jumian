@@ -48,3 +48,28 @@ export const initWinston = (apiTitle: string) => {
   
     return logger;
   };
+
+export class ProxyLogger {
+  constructor(
+    private readonly logger: any,
+    private readonly loggerMetadata: any,
+  ) {}
+
+  public log(message: string, options: any = {}): void {
+    this.logger.log(message, { ...this.loggerMetadata, ...options });
+  }
+
+  public error(message: string, options: any = {}): void {
+    this.logger.error(message, { ...this.loggerMetadata, ...options });
+  }
+
+  public logMetadata(
+    request_id: string,
+    method: string,
+  ): Record<string, string> {
+    return {
+      request_id,
+      method,
+    };
+  }
+}

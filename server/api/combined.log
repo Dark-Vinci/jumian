@@ -349,3 +349,12 @@
 {"context":"GraphQLModule","level":"info","message":"Mapped {/graphql, POST} route","service":"api","timestamp":"2023-05-01T08:34:18.638Z"}
 {"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"api","timestamp":"2023-05-01T08:34:18.640Z"}
 {"level":"info","message":"Application running on url http://127.0.0.1:3002, on worker with pid: 2419","service":"api","timestamp":"2023-05-01T08:34:18.647Z"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application...","service":"api","timestamp":"2023-05-01T12:36:57.858Z"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized","service":"api","timestamp":"2023-05-01T12:36:57.866Z"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized","service":"api","timestamp":"2023-05-01T12:36:57.867Z"}
+{"context":"InstanceLoader","level":"info","message":"GraphQLSchemaBuilderModule dependencies initialized","service":"api","timestamp":"2023-05-01T12:36:57.867Z"}
+{"context":"InstanceLoader","level":"info","message":"GraphQLModule dependencies initialized","service":"api","timestamp":"2023-05-01T12:36:57.867Z"}
+{"context":{"methodName":"onModuleInit","packageName":"UserService","request_id":"48cfa6f5-d8cc-4aea-b274-a3d0dc081717"},"level":"info","message":"the message","service":"api","timestamp":"2023-05-01T12:36:57.874Z"}
+{"context":"GraphQLModule","level":"info","message":"Mapped {/graphql, POST} route","service":"api","timestamp":"2023-05-01T12:36:57.916Z"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"api","timestamp":"2023-05-01T12:36:57.917Z"}
+{"level":"info","message":"Application running on url http://127.0.0.1:3002, on worker with pid: 6603","service":"api","timestamp":"2023-05-01T12:36:57.922Z"}
