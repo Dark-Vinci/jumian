@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  admin:
+    build:
+      context: .
+      dockerfile: ./admin/Dockerfile
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./admin:/app
+    tty: true
+    stdin_open: true
+    command: npm start
+
+  application:
+    build:
+      context: .
+      dockerfile: ./application/Dockerfile
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./application:/app
+    tty: true
+    stdin_open: true
+    command: npm start

@@ -1,0 +1,55 @@
+{
+    "date": "Mon May 01 2023 08:51:15 GMT+0100 (West Africa Standard Time)",
+    "error": {},
+    "exception": true,
+    "level": "error",
+    "message": "unhandledRejection: No address added out of total 2 resolved\nError: No address added out of total 2 resolved\n    at bindResultPromise.then.errorString (/Users/ademolaolutomiwaabraham/Desktop/allcodes/work-go/src/github.com/dark-vinci/node-fullstack/jumian/server/account/node_modules/@grpc/grpc-js/src/server.ts:594:32)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)",
+    "os": {
+        "loadavg": [
+            11.50341796875,
+            12.3466796875,
+            15.21533203125
+        ],
+        "uptime": 929
+    },
+    "process": {
+        "argv": [
+            "/usr/local/bin/node",
+            "/Users/ademolaolutomiwaabraham/Desktop/allcodes/work-go/src/github.com/dark-vinci/node-fullstack/jumian/server/account/dist/main"
+        ],
+        "cwd": "/Users/ademolaolutomiwaabraham/Desktop/allcodes/work-go/src/github.com/dark-vinci/node-fullstack/jumian/server/account",
+        "execPath": "/usr/local/bin/node",
+        "gid": 20,
+        "memoryUsage": {
+            "arrayBuffers": 140019,
+            "external": 3297390,
+            "heapTotal": 33800192,
+            "heapUsed": 20394640,
+            "rss": 74891264
+        },
+        "pid": 3637,
+        "uid": 501,
+        "version": "v16.14.2"
+    },
+    "service": "account",
+    "stack": "Error: No address added out of total 2 resolved\n    at bindResultPromise.then.errorString (/Users/ademolaolutomiwaabraham/Desktop/allcodes/work-go/src/github.com/dark-vinci/node-fullstack/jumian/server/account/node_modules/@grpc/grpc-js/src/server.ts:594:32)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)",
+    "timestamp": "2023-05-01T07:51:15.164Z",
+    "trace": [
+        {
+            "column": 32,
+            "file": "/Users/ademolaolutomiwaabraham/Desktop/allcodes/work-go/src/github.com/dark-vinci/node-fullstack/jumian/server/account/node_modules/@grpc/grpc-js/src/server.ts",
+            "function": "bindResultPromise.then.errorString",
+            "line": 594,
+            "method": "errorString",
+            "native": false
+        },
+        {
+            "column": 5,
+            "file": "node:internal/process/task_queues",
+            "function": "processTicksAndRejections",
+            "line": 96,
+            "method": null,
+            "native": false
+        }
+    ]
+}

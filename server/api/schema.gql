@@ -4,11 +4,18 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""user"""
+"""user schema object"""
 type User {
+  """id atm"""
   id: ID!
+
+  """description atm"""
   description: String
-  creationDate: Date!
+
+  """date created"""
+  creation_date: Date!
+
+  """ingredients description"""
   ingredients: [String!]!
 }
 
@@ -16,5 +23,11 @@ type User {
 scalar Date
 
 type Query {
-  getUsers(skip: Int! = 0, take: Int! = 25): [User!]!
+  getUsers(
+    """skip prop"""
+    skip: Int = 0
+
+    """take prop"""
+    take: Int = 25
+  ): [User!]!
 }

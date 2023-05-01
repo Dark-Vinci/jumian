@@ -2,25 +2,26 @@ import cluster from 'cluster';
 import process from 'process';
 import { cpus } from 'os';
 import { join } from 'path';
-// import request from 'sdk';
-
-// console.log({ request });
 
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
+import { Logger } from '@nestjs/common';
+import { initWinston } from 'sdk/dist/logger';
+import { AppEnv, ProtoPath, RPCServiceName, RPCUrl } from 'sdk';
 
 import { AppModule } from './startup/app.module';
+import { WinstonModule } from 'nest-winston';
 
 class Application {
   // get the number of available CPU cores
-  private static readonly numCPUs = cpus().length;
+  private static numCPUs = cpus().length;
 
   // GRPC options
   private static readonly options = {
-    url: `localhost:3000`,
-    package: 'account',
+    url: RPCUrl.ACCOUNT,
+    package: RPCServiceName.ACCOUNT,
 
-    protoPath: join(__dirname, '../../sdk/GRPC/account/account.proto'),
+    protoPath: join(__dirname, ProtoPath.ACCOUNT),
     loader: {
       enums: String,
       objects: true,
@@ -32,7 +33,12 @@ class Application {
     switch (true) {
       case cluster.isPrimary: {
         // Primary task of the main cluster is to create a fork of the application and listen to errors
-        console.log(`Primary ${process.pid} is running`);
+        Logger.log(`Primary ${process.pid} is running`);
+
+        // RUN one instance in development
+        if (process.env.NODE_ENV === AppEnv.DEVELOPMENT) {
+          this.numCPUs = 1;
+        }
 
         // create a fork on the number of available cores
         for (let i = 0; i < this.numCPUs; i++) {
@@ -41,10 +47,19 @@ class Application {
 
         // Spin out a new fork when an error is encountered with a process
         cluster.on('exit', (worker, code, signal) => {
-          console.log(
+          Logger.log(
             `worker ${worker.process.pid} died, code ${code}, signal ${signal}`,
           );
-          cluster.fork();
+
+          const numWorkers = Object.keys(cluster.workers).length;
+
+          // make the fork only in staging and production mode
+          if (
+            process.env.NODE_ENV !== AppEnv.DEVELOPMENT &&
+            numWorkers < this.numCPUs
+          ) {
+            cluster.fork();
+          }
         });
 
         break;
@@ -55,10 +70,13 @@ class Application {
         const app = await NestFactory.createMicroservice(AppModule, {
           transport: Transport.GRPC,
           options: this.options,
+          logger: WinstonModule.createLogger({
+            instance: initWinston(RPCServiceName.ACCOUNT),
+          }),
         });
 
         await app.listen();
-        console.log(
+        Logger.log(
           `Application running on url localhost:${3000}, on worker with pid: ${
             process.pid
           }`,

@@ -5,6 +5,6 @@ package sales;
 import "request.proto";
 import "response.proto";
 
-service HeroService {
+service SalesService {
   rpc Ping (PingRequest) returns (PingResponse) {}
 }

@@ -3,67 +3,16 @@ import process from 'process';
 import { cpus } from 'os';
 
 import { NestFactory } from '@nestjs/core';
+import { Logger } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
+import { initWinston } from 'sdk/dist/logger';
+import { AppEnv } from 'sdk';
 
 import { AppModule } from './app.module';
 
-import { createLogger } from 'winston';
-import { Logger } from '@nestjs/common';
-
-import winston = require('winston');
-
-const logLevels = {
-  fatal: 0,
-  error: 1,
-  warn: 2,
-  info: 3,
-  debug: 4,
-  trace: 5,
-};
-
-export const initWinston = (apiTitle: string) => {
-  const logger = createLogger({
-    level: 'debug',
-    levels: logLevels,
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.json(),
-      winston.format.colorize(),
-      winston.format.align(),
-    ),
-    defaultMeta: { service: apiTitle },
-    transports: [
-      new winston.transports.File({ filename: 'error.log', level: 'error' }),
-      new winston.transports.File({ filename: 'combined.log' }),
-    ],
-    exceptionHandlers: [
-      new winston.transports.Console({
-        format: winston.format.simple(),
-      }),
-      new winston.transports.File({ filename: 'exceptions.log' }),
-    ],
-    rejectionHandlers: [
-      new winston.transports.Console({
-        format: winston.format.simple(),
-      }),
-      new winston.transports.File({ filename: 'rejections.log' }),
-    ],
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    logger.add(
-      new winston.transports.Console({
-        format: winston.format.simple(),
-      }),
-    );
-  }
-
-  return logger;
-};
-
 class Application {
   // get the number of available CPU cores
-  private static readonly numCPUs = cpus().length;
+  private static numCPUs = cpus().length;
 
   public static async start(): Promise<void> {
     switch (true) {
@@ -71,9 +20,13 @@ class Application {
         // Primary task of the main cluster is to create a fork of the application and listen to errors
         Logger.log(`Primary ${process.pid} is running`);
 
+        // RUN one instance in development
+        if (process.env.NODE_ENV === AppEnv.DEVELOPMENT) {
+          this.numCPUs = 1;
+        }
+
         // create a fork on the number of available cores
-        // for (let i = 0; i < this.numCPUs; i++) {
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < this.numCPUs; i++) {
           cluster.fork();
         }
 
@@ -82,7 +35,16 @@ class Application {
           Logger.error(
             `worker ${worker.process.pid} died, code ${code}, signal ${signal}`,
           );
-          // cluster.fork();
+
+          const numWorkers = Object.keys(cluster.workers).length;
+
+          // make the fork only in staging and production mode
+          if (
+            process.env.NODE_ENV !== AppEnv.DEVELOPMENT &&
+            numWorkers < this.numCPUs
+          ) {
+            cluster.fork();
+          }
         });
 
         break;

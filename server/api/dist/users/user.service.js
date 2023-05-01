@@ -16,14 +16,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
-const common_1 = require("@nestjs/common");
 const crypto_1 = __importDefault(require("crypto"));
+const common_1 = require("@nestjs/common");
 class ProxyLogger {
     constructor(logger, loggerMetadata) {
         this.logger = logger;
         this.loggerMetadata = loggerMetadata;
     }
-    log(message, options) {
+    log(message, options = {}) {
         this.logger.log(message, Object.assign(Object.assign({}, this.loggerMetadata), options));
     }
     error(message, options = {}) {

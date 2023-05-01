@@ -32,6 +32,18 @@ AppModule = __decorate([
                         }),
                     ],
                 },
+                subscriptions: {
+                    'graphql-ws': {
+                        path: '/grapgql',
+                        onConnect: (_ctx) => { },
+                        onDisconnect: (_ctx, _code, _reason) => { },
+                        onSubscribe: (_ctx, _message) => { },
+                        onNext(_ctx, _message, _args, _result) { },
+                    },
+                },
+                playground: true,
+                context: ({ req }) => ({ req }),
+                include: [user_module_1.UserModule],
             }),
         ],
     })

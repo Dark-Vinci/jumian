@@ -18,11 +18,17 @@ let UserArgs = class UserArgs {
     }
 };
 __decorate([
-    (0, graphql_1.Field)((_type) => graphql_1.Int),
+    (0, graphql_1.Field)((_type) => graphql_1.Int, {
+        nullable: true,
+        description: 'skip prop',
+    }),
     __metadata("design:type", Object)
 ], UserArgs.prototype, "skip", void 0);
 __decorate([
-    (0, graphql_1.Field)((_type) => graphql_1.Int),
+    (0, graphql_1.Field)((_type) => graphql_1.Int, {
+        nullable: true,
+        description: 'take prop',
+    }),
     __metadata("design:type", Object)
 ], UserArgs.prototype, "take", void 0);
 UserArgs = __decorate([

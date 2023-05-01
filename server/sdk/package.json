@@ -1,12 +1,37 @@
 {
   "name": "sdk",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Description of your package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/your-package-name.git"
+  },
+  "keywords": [
+    "typescript",
+    "package"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.3.2",
+    "source-map-support": "^0.5.20"
+  },
+  "dependencies": {
+    "@types/node": "^18.16.3",
+    "winston": "^3.8.2"
+  }
 }

@@ -14,7 +14,12 @@ const graphql_1 = require("@nestjs/graphql");
 let User = class User {
 };
 __decorate([
-    (0, graphql_1.Field)((_type) => graphql_1.ID),
+    (0, graphql_1.Field)((_type) => graphql_1.ID, {
+        nullable: false,
+        description: 'id atm',
+        defaultValue: '00000000-0000-0000-0000-000000000000',
+        name: 'id',
+    }),
     __metadata("design:type", String)
 ], User.prototype, "id", void 0);
 __decorate([
@@ -22,19 +27,34 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)({ nullable: true }),
+    (0, graphql_1.Field)({
+        nullable: true,
+        description: 'description atm',
+        defaultValue: '',
+        name: 'description',
+    }),
     __metadata("design:type", String)
 ], User.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({
+        nullable: false,
+        description: 'date created',
+        name: 'creation_date',
+        defaultValue: new Date(),
+    }),
     __metadata("design:type", Date)
 ], User.prototype, "creationDate", void 0);
 __decorate([
-    (0, graphql_1.Field)((_type) => [String]),
+    (0, graphql_1.Field)((_type) => [String], {
+        nullable: false,
+        description: 'ingredients description',
+        name: 'ingredients',
+        defaultValue: [],
+    }),
     __metadata("design:type", Array)
 ], User.prototype, "ingredients", void 0);
 User = __decorate([
-    (0, graphql_1.ObjectType)({ description: 'user' })
+    (0, graphql_1.ObjectType)({ description: 'user schema object' })
 ], User);
 exports.User = User;
 //# sourceMappingURL=user.model.js.map
