@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package shops;
+
+message PingRequest {
+  string request_id = 1;
+}

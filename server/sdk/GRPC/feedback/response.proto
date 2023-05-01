@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package feedback;
+
+message PingResponse {
+  string request_id = 1;
+  string worker = 2;
+}
+

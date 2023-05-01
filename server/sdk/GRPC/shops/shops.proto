@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package shops;
+
+import "request.proto";
+import "response.proto";
+
+service HeroService {
+  rpc Ping (PingRequest) returns (PingResponse) {}
+}

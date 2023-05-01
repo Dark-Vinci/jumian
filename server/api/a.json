@@ -1,0 +1,7 @@
+{
+    "context": "GraphQLModule",
+    "level": "info",
+    "message": "Mapped {/graphql, POST} route",
+    "service": "api",
+    "timestamp": "2023-04-30T17:06:43.865Z"
+}

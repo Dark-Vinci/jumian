@@ -1,0 +1,12 @@
+.vscode/
+
+client/account/node_modules/
+client/admin/node_modules/
+client/api/node_modules/
+client/feedback/node_modules/
+client/sales/node_modules/
+client/sdk/node_modules/
+client/shops/node_modules/
+
+client/admin/node_modules/
+client/application/node_modules/

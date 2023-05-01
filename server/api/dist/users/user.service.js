@@ -1,0 +1,56 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserService = void 0;
+const common_1 = require("@nestjs/common");
+const crypto_1 = __importDefault(require("crypto"));
+class ProxyLogger {
+    constructor(logger, loggerMetadata) {
+        this.logger = logger;
+        this.loggerMetadata = loggerMetadata;
+    }
+    log(message, options) {
+        this.logger.log(message, Object.assign(Object.assign({}, this.loggerMetadata), options));
+    }
+    error(message, options = {}) {
+        this.logger.error(message, Object.assign(Object.assign({}, this.loggerMetadata), options));
+    }
+}
+let UserService = class UserService extends ProxyLogger {
+    constructor(logger) {
+        super(logger, {
+            packageName: 'UserService',
+        });
+    }
+    onModuleInit() {
+        const loggingMetadata = {
+            request_id: crypto_1.default.randomUUID(),
+            methodName: 'onModuleInit',
+        };
+        this.log('the message', loggingMetadata);
+    }
+    findAll() {
+        return {};
+    }
+};
+UserService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)(common_1.Logger)),
+    __metadata("design:paramtypes", [common_1.Logger])
+], UserService);
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

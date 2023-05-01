@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package sales;
+
+message PingResponse {
+  string request_id = 1;
+  string worker = 2;
+}
