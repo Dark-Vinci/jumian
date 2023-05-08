@@ -60,7 +60,7 @@ services:
     restart: "on-failure"
     depends_on:
       - account
-      - shop
+      - shops
       - sales
       - feedback
       - redis
@@ -71,7 +71,7 @@ services:
       context: .
       dockerfile: ./account/Dockerfile
       args:
-        APP_PORT: "3002"
+        APP_PORT: "3000"
         APP_NODE_ENV: "development"
         APP_TOKEN: "1234567890"
         APP_PROJECT_NAME: "account"
@@ -86,12 +86,12 @@ services:
 #      - account_exception.log:/github.com/dark-vinci/node-fullstack/jumian/account/exception.log
 #      - account_rejection.log:/github.com/dark-vinci/node-fullstack/jumian/account/rejection.log
     ports:
-      - "3002:3002"
+      - "3000:3000"
     restart: "on-failure"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+#    depends_on:
+#      - postgres
+#      - redis
+#      - rabbitmq
 
   admin:
     container_name: admin
@@ -99,7 +99,7 @@ services:
       context: .
       dockerfile: ./admin/Dockerfile
       args:
-        APP_PORT: "3002"
+        APP_PORT: "3001"
         APP_NODE_ENV: "development"
         APP_TOKEN: "1234567890"
         APP_PROJECT_NAME: "admin"
@@ -114,12 +114,12 @@ services:
 #      - admin_exception.log:/github.com/dark-vinci/node-fullstack/jumian/admin/exception.log
 #      - admin_rejection.log:/github.com/dark-vinci/node-fullstack/jumian/admin/rejection.log
     ports:
-      - "3002:3002"
+      - "3001:3001"
     restart: "on-failure"
     depends_on:
       - feedback
       - sales
-      - shop
+      - shops
       - account
       - postgres
       - redis
@@ -131,7 +131,7 @@ services:
       context: .
       dockerfile: ./feedback/Dockerfile
       args:
-        APP_PORT: "3002"
+        APP_PORT: "3003"
         APP_NODE_ENV: "development"
         APP_TOKEN: "1234567890"
         APP_PROJECT_NAME: "feedback"
@@ -146,7 +146,7 @@ services:
 #      - feedback_exception.log:/github.com/dark-vinci/node-fullstack/jumian/feedback/exception.log
 #      - feedback_rejection.log:/github.com/dark-vinci/node-fullstack/jumian/feedback/rejection.log
     ports:
-      - "3002:3002"
+      - "3003:3003"
     restart: "on-failure"
     depends_on:
       - postgres
@@ -159,7 +159,7 @@ services:
       context: .
       dockerfile: ./sales/Dockerfile
       args:
-        APP_PORT: "3002"
+        APP_PORT: "3004"
         APP_NODE_ENV: "development"
         APP_TOKEN: "1234567890"
         APP_PROJECT_NAME: "sales"
@@ -174,27 +174,27 @@ services:
 #      - sales_exception.log:/github.com/dark-vinci/node-fullstack/jumian/sales/exception.log
 #      - sales_rejection.log:/github.com/dark-vinci/node-fullstack/jumian/sales/rejection.log
     ports:
-      - "3002:3002"
+      - "3004:3004"
     restart: "on-failure"
     depends_on:
       - postgres
       - redis
       - rabbitmq
 
-  shop:
-    container_name: shop
+  shops:
+    container_name: shops
     build:
       context: .
-      dockerfile: ./shop/Dockerfile
+      dockerfile: ./shops/Dockerfile
       args:
-        APP_PORT: "3002"
+        APP_PORT: "3005"
         APP_NODE_ENV: "development"
         APP_TOKEN: "1234567890"
-        APP_PROJECT_NAME: "shop"
+        APP_PROJECT_NAME: "shops"
     env_file:
       - ./dev.env
     volumes:
-      - ./shop:/github.com/dark-vinci/node-fullstack/jumian/shop
+      - ./shops:/github.com/dark-vinci/node-fullstack/jumian/shops
       - ./sdk:/github.com/dark-vinci/node-fullstack/jumian/sdk
       - /github.com/dark-vinci/node-fullstack/jumian/shop/node_modules
 #      - shop_combined:/github.com/dark-vinci/node-fullstack/jumian/shop/combined.log
@@ -202,7 +202,7 @@ services:
 #      - shop_exception:/github.com/dark-vinci/node-fullstack/jumian/shop/exception.log
 #      - shop_rejection:/github.com/dark-vinci/node-fullstack/jumian/shop/rejection.log
     ports:
-      - "3002:3002"
+      - "3005:3005"
     restart: "on-failure"
     depends_on:
       - postgres

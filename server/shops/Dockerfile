@@ -4,10 +4,10 @@ FROM node:16-bullseye-slim
 ARG APP_PORT=3005
 ARG APP_NODE_ENV=development
 ARG APP_TOKEN=12
-ARG APP_PROJECT_NAME=shop
+ARG APP_PROJECT_NAME=shops
 
 #set the work dir
-WORKDIR /github.com/dark-vinci/node-fullstack/jumian/shop
+WORKDIR /github.com/dark-vinci/node-fullstack/jumian/shops
 
 COPY  sdk /github.com/dark-vinci/node-fullstack/jumian/sdk
 
@@ -16,17 +16,17 @@ RUN cd /github.com/dark-vinci/node-fullstack/jumian/sdk \
     && npm install \
     && npx tsc  \
     && npx link \
-    && cd /github.com/dark-vinci/node-fullstack/jumian/shop
+    && cd /github.com/dark-vinci/node-fullstack/jumian/shops
 
 #install needed packages
-COPY shop/package*.json /github.com/dark-vinci/node-fullstack/jumian/shop
+COPY shops/package*.json /github.com/dark-vinci/node-fullstack/jumian/shops
 RUN npm install
 
 #link with {sdk}
 RUN npm link sdk
 
 #copy the application
-COPY shop /github.com/dark-vinci/node-fullstack/jumian/shop
+COPY shops /github.com/dark-vinci/node-fullstack/jumian/shops
 
 #set the environment variables
 ENV PORT $APP_PORT

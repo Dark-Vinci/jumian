@@ -1,7 +1,7 @@
 FROM node:16-bullseye-slim
 
 # build args
-ARG APP_PORT=3002
+ARG APP_PORT=3001
 ARG APP_NODE_ENV=development
 ARG APP_TOKEN=12
 ARG APP_PROJECT_NAME=admin
