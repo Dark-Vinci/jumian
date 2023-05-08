@@ -2,9 +2,14 @@
 /dist
 /node_modules
 
+combined.log
+error.log
+exceptions.log
+rejections.log
 # Logs
 logs
 *.log
+#combined.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*

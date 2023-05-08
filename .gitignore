@@ -1,12 +1,13 @@
 .vscode/
+/stream
 
-server/account/node_modules/
-server/admin/node_modules/
-server/api/node_modules/
-server/feedback/node_modules/
-server/sales/node_modules/
-server/sdk/node_modules/
-server/shops/node_modules/
+# server/account/node_modules/
+# server/admin/node_modules/
+# server/api/node_modules/
+# server/feedback/node_modules/
+# server/sales/node_modules/
+# server/sdk/node_modules/
+# server/shops/node_modules/
 
-client/admin/node_modules/
-client/application/node_modules/
+# client/admin/node_modules/
+# client/application/node_modules/
