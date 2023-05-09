@@ -116,14 +116,14 @@ services:
     ports:
       - "3001:3001"
     restart: "on-failure"
-    depends_on:
-      - feedback
-      - sales
-      - shops
-      - account
-      - postgres
-      - redis
-      - rabbitmq
+#    depends_on:
+#      - feedback
+#      - sales
+#      - shops
+#      - account
+#      - postgres
+#      - redis
+#      - rabbitmq
 
   feedback:
     container_name: feedback
@@ -148,10 +148,10 @@ services:
     ports:
       - "3003:3003"
     restart: "on-failure"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+#    depends_on:
+#      - postgres
+#      - redis
+#      - rabbitmq
 
   sales:
     container_name: sales
@@ -176,10 +176,10 @@ services:
     ports:
       - "3004:3004"
     restart: "on-failure"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+#    depends_on:
+#      - postgres
+#      - redis
+#      - rabbitmq
 
   shops:
     container_name: shops
@@ -204,10 +204,10 @@ services:
     ports:
       - "3005:3005"
     restart: "on-failure"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+#    depends_on:
+#      - postgres
+#      - redis
+#      - rabbitmq
 
 #volumes:
 #  shop_rejection:

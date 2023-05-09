@@ -1,23 +1,31 @@
 # Use an official Node.js runtime as a parent image
 FROM node:14-alpine
 
+ARG APP_NODE_ENV=development
+ARG APP_PORT=5001
+
 # Set the working directory to /app
-WORKDIR /app
+WORKDIR /github.com/dark-vinci/node-fullstack/jumian/client/admin
 
 # Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
+COPY admin/package*.json /github.com/dark-vinci/node-fullstack/jumian/client/admin
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application code to the container
-COPY . .
+COPY admin /github.com/dark-vinci/node-fullstack/jumian/client/admin
+
+ENV NODE_ENV $APP_NODE_ENV
 
 # Build the React app for production
-RUN npm run build
+RUN if [ $NODE_ENV = production]; \
+    then \
+    npm run build; \
+    fi
 
 # Expose the port that the app will run on
-EXPOSE 3000
+EXPOSE $APP_PORT
 
 # Start the app with the npm start command
 CMD ["npm", "start"]

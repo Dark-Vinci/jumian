@@ -15,7 +15,7 @@ COPY  sdk /github.com/dark-vinci/node-fullstack/jumian/sdk
 RUN cd /github.com/dark-vinci/node-fullstack/jumian/sdk \
     && npm install \
     && npx tsc  \
-    && npx link \
+    && npm link \
     && cd /github.com/dark-vinci/node-fullstack/jumian/admin
 
 #install needed packages

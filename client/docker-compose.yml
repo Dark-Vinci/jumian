@@ -4,10 +4,14 @@ services:
     build:
       context: .
       dockerfile: ./admin/Dockerfile
+      args:
+        APP_PORT: "5001"
+        APP_NODE_ENV: "development"
     ports:
-      - "4000:3000"
+      - "5001:5001"
     volumes:
-      - ./admin:/app
+      - ./admin:/github.com/dark-vinci/node-fullstack/jumian/client/admin
+      - /github.com/dark-vinci/node-fullstack/jumian/client/admin/node_modules
     tty: true
     stdin_open: true
     command: npm start
@@ -16,10 +20,14 @@ services:
     build:
       context: .
       dockerfile: ./application/Dockerfile
+      args:
+        APP_PORT: "6001"
+        APP_NODE_ENV: "development"
     ports:
-      - "4000:3000"
+      - "6001:6001"
     volumes:
-      - ./application:/app
+      - ./admin:/github.com/dark-vinci/node-fullstack/jumian/client/application
+      - /github.com/dark-vinci/node-fullstack/jumian/client/application/node_modules
     tty: true
     stdin_open: true
     command: npm start
