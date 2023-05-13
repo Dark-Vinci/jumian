@@ -47,19 +47,11 @@ class User extends Base {
     })
     password: string;
 
-    @Column({
-        name: 'version',
-        type: 'int',
-        nullable: false,
-    })
-    level: number;
-
     public constructor(user: UserInterface) {
         super();
 
         this.password = user.password;
         this.email = user.email;
-        this.level = 1;
         this.last_name = user.last_name;
         this.first_name = user.first_name;
     }

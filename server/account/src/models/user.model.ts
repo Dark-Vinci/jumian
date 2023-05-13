@@ -56,14 +56,6 @@ class User extends Base {
   phone_number: string;
 
   @Column({
-    name: 'password',
-    type: 'text',
-    nullable: false,
-    unique: true,
-  })
-  password: string;
-
-  @Column({
     name: 'version',
     type: 'int',
     nullable: false,
@@ -73,36 +65,12 @@ class User extends Base {
   public constructor(user: UserInterface) {
     super();
 
-    this.password = user.password;
+    // set entity fields
     this.email = user.email;
     this.level = 1;
     this.last_name = user.last_name;
     this.first_name = user.first_name;
     this.phone_number = user.phone_number;
-  }
-
-  @BeforeInsert()
-  private async hashPassword(): Promise<void> {
-    try {
-      const saltRound = +process.env.SALT_ROUND || 10;
-      const salt = await bcrypt.genSalt(saltRound);
-
-      const hashedPassword = await bcrypt.hash(this.password.trim(), salt);
-
-      this.password = hashedPassword;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public async comparePassword(password: string): Promise<boolean> {
-    try {
-      const isValid = await bcrypt.compare(password, this.password);
-
-      return isValid;
-    } catch (error) {
-      throw error;
-    }
   }
 
   public fullName(): string {
