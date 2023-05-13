@@ -62,16 +62,16 @@ class User extends Base {
   })
   level: number;
 
-  public constructor(user: UserInterface) {
-    super();
-
-    // set entity fields
-    this.email = user.email;
-    this.level = 1;
-    this.last_name = user.last_name;
-    this.first_name = user.first_name;
-    this.phone_number = user.phone_number;
-  }
+  // public constructor(user: UserInterface) {
+  //   super();
+  //
+  //   // set entity fields
+  //   this.email = user.email;
+  //   this.level = 1;
+  //   this.last_name = user.last_name;
+  //   this.first_name = user.first_name;
+  //   this.phone_number = user.phone_number;
+  // }
 
   public fullName(): string {
     return `${this.first_name} ${this.last_name}`;
